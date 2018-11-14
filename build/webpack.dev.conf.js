@@ -1,4 +1,4 @@
-"use strict"
+'use strict'
 const merge = require('webpack-merge');
 const BaseWebpackConfig = require('./webpack.base.conf');
 const path = require('path');
