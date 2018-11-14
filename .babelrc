@@ -1,0 +1,4 @@
+// 用于babel转码js
+{
+    "presets":["env","react"]
+}
