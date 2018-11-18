@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import TodoView from './TodoView';
+import {withRouter} from 'react-router-dom';
+
 
 @observer
 class TodoList extends Component {
@@ -22,4 +24,4 @@ class TodoList extends Component {
         )
     }
 }
-export default TodoList;
+export default withRouter(TodoList);
