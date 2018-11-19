@@ -7,8 +7,9 @@ import img from '../assets/images/1.jpg';
 import SlideMenu from './slideMenu';
 import Home from '../components/Home';
 import About from '../components/About';
+import Routes from '../route';
 import { Provider } from 'mobx-react'
-import {BrowserRouter as Router,Route} from 'react-router-dom'
+import {HashRouter as Router,Route,Switch} from 'react-router-dom'
 // import Routes from '../route';
 @observer
 class App extends Component{
@@ -16,18 +17,20 @@ class App extends Component{
         return (
             <Provider>
                 <Router>
-                    <SlideMenu/>
-                    {/* <div className= "fontcolor" >
                     
-                        hello react!!!!
+                    <div className= "fontcolor" >
+                    
+                        {/* hello react!!!!
                         <img src={img}/>
                         <img src={require('../assets/images/1.jpg')}/>
-                        <TodoList store = {todoStore}/>
+                        <TodoList store = {todoStore}/> */}
                         <Routes />
                         <SlideMenu/>
-                        <Route exact path ="/app/home" component ={Home}></Route>
-                        <Route exact path ="/app/Loan/about" component ={About}></Route>
-                    </div> */}
+                        {/* <Switch>
+                            <Route exact path ="/app/home" component ={Home}></Route>
+                            <Route path ="/app/Loan/about" component ={About}></Route>
+                        </Switch> */}
+                    </div>
                 </Router>
             </Provider>
             

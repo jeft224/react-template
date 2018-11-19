@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import menuConfig from '../route/router.conf'
-import { withRouter } from 'react-router-dom'
+import { withRouter ,Link} from 'react-router-dom'
 
 @withRouter
 class SlideMenu extends Component {
@@ -20,24 +20,30 @@ class SlideMenu extends Component {
                         menuConfig['menus'].map((item,i)=>
                             item.subs&&item.subs.length>0 ? (
                                 <li className ="" key ={i} >
-                                    <p onClick ={this.onSelect(item)}>
-                                      父菜单1
-                                      <span>{item.title}</span>
-                                    </p>
+                                    <Link to = {item.path}>
+                                        <p>
+                                        父菜单1
+                                        <span>{item.title}</span>
+                                        </p>
+                                    </Link>
                                    {
                                        item.subs.map((subitem,i)=>
-                                           <p key= {i} onClick ={this.onSelect(subitem)}>
-                                               <span>{subitem.title}</span>
-                                           </p>
+                                            <Link to = {subitem.path}>
+                                            <p key= {i}>
+                                                <span>{subitem.title}</span>
+                                            </p>
+                                            </Link>
                                        )
                                    }
                                 </li>
                             ): (
-                                <li className ="" key={i}>
-                                    <p onClick ={this.onSelect(item)}>
-                                      父菜单2
-                                      <span>{item.title}</span>
-                                    </p>
+                                <li className ="" key={i} >
+                                   <Link to = {item.path}>
+                                        <p>
+                                            父菜单2
+                                            <span>{item.title}</span>
+                                        </p>
+                                    </Link>
                                 </li>
                             )
                         )

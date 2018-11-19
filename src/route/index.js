@@ -6,22 +6,24 @@ import AllComponents from '../components';
 class ARouter extends Component {
 
     render(){
-        <Switch>
-            {
-                Object.keys(routesConfig).map( (key) => {
-                    routesConfig[key].map((r) => {
-                        const route = (r) =>{
-                            const AComponent = AllComponents[r.component];
-                            return (
-                                <Route key={r.route || r.path}  exact path = {r.route || r.path } component={AComponent}/>
-                            )
-                        }
-                        
-                        return r.component ? route(r) : r.subs.map(r => route(r))
+        return (
+            <Switch>
+                {
+                    Object.keys(routesConfig).map(key => {
+                        return (
+                            routesConfig[key].map(r => {
+                            const route = r =>{
+                                const Component = AllComponents[r.component];
+                                return  (<Route key={r.path}  exact= {r.exact} path = {r.path} render={() => <Component />}/>)
+                                
+                            }
+                            return r.component ? route(r) : r.subs.map(r => route(r))
+                            })
+                        )
                     })
-                })
-            }
-        </Switch>
+                }
+            </Switch>
+        )
     }
 }
 export default ARouter;

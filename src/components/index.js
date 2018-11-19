@@ -1,6 +1,6 @@
-import TodoList from './ TodoList';
+import About from './About';
 import Home from './Home';
 
 export default {
-    Home, TodoList
+    Home, About
 }
