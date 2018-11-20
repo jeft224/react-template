@@ -1,21 +1,4 @@
-import React, {Component} from 'react'
-import menuConfig from '../route/router.conf'
-import { withRouter ,Link} from 'react-router-dom'
-
-@withRouter
-class SlideMenu extends Component {
-    onSelect = ({path}) => { 
-
-        const { location, history } = this.props
-        // alert(location.pathname)
-        if (location.pathname === path) return
-        history.push(path)
-    }
-
-    render() {
-        return (
-            <div className="slideMenu_wrap">
-                <ul>
+{/* <ul>
                     {
                         menuConfig['menus'].map((item,i)=>
                             item.subs&&item.subs.length>0 ? (
@@ -48,10 +31,19 @@ class SlideMenu extends Component {
                             )
                         )
                     }
-                </ul>
-            </div>
-        )
-    }
-}
-
-export default SlideMenu;
+                </ul> */}
+// 动态路由配置的案列
+<div className= "fontcolor" >
+                        
+                        
+                        hello react!!!!
+                        <img src={img}/>
+                        <img src={require('../assets/images/1.jpg')}/>
+                        <TodoList store = {todoStore}/>
+                        <SlideMenu/>
+                        
+                        <Switch>
+                            <Route exact path ="/app/home" component ={Home}></Route>
+                            <Route path ="/app/Loan/about" component ={About}></Route>
+                        </Switch>
+                    </div>

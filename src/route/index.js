@@ -2,7 +2,7 @@
 import React , {Component} from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import routesConfig from './router.conf';
-import AllComponents from '../components';
+import AllComponents from '../views';
 class ARouter extends Component {
 
     render(){
