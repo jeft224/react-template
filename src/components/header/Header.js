@@ -1,35 +1,36 @@
 import React, { Component } from 'react';
-import { Layout,Menu,Icon,Dropdown,Avatar} from 'antd';
+import { Layout,Icon,Dropdown,Avatar,Menu} from 'antd';
 const {Header} = Layout
+import {observer} from 'mobx-react'
+import './header.less'
+@observer
 class RHeader extends Component{
-    renderMenu = ()=> (
-        <Menu>
-            <Menu.item>
-                <span>
-                    <Icon type ="logout"/>
+    
+    render() {
+        const menu = (
+            <Menu>
+                <Menu.Item>
+                    <Icon type="logout"/>
                     个人中心
-                </span>
-            </Menu.item>
-            <Menu.item>
-                <span>
-                    <Icon type ="user"/>
+                </Menu.Item>
+                <Menu.Item>
+                    <Icon type="user"/>
                     个人设置
-                </span>
-            </Menu.item>
-            <Menu.Divider/>
-            <Menu.item>
-                <span>
-                    <Icon type ="logout"/>
+                </Menu.Item>
+                <Menu.Divider/>
+                <Menu.Item>
+                    <Icon type="logout"/>
                     退出登录
-                </span>
-            </Menu.item>
-        </Menu>
-    )
-    render(){
+                </Menu.Item>
+            </Menu>
+        )
         return (
-            <Header style ={{background:'#fff',padding:0,boxShadow:'0px 1px 4px rgba(0,21,41,.08)'}}>
-                <Dropdown overlay = {this.renderMenu} placement = "bottomCenter">
-                    <Avatar icon ="user"/>
+            <Header className="header-icon">
+                <Dropdown overlay = {menu} placement = "bottomCenter" style ={{float:'right'}}>
+                    <a className ="ant-drop-link" href ="#">
+                        <Avatar icon="user"/>
+                          Root
+                    </a>
                 </Dropdown>
             </Header>
         )
