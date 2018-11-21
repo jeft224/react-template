@@ -8,13 +8,27 @@ const {Content,Footer} = Layout
 import SiderMenu from '../components/SiderMenu';
 import Header from '../components/header/Header';
 class BasicLayout extends Component {
+    state = {
+        leftCollapsedWidth:60,
+        collapsedLeftSide:false,
+    }
+    onCollapsedLeftSide = () =>{
+        const collapsedLeftSide = this.state.leftCollapsedWidth === 0 ? true :!this.state.collapsedLeftSide;
+        console.log(this.state.collapsedLeftSide)
+        this.setState({
+            collapsedLeftSide,
+            leftCollapsedWidth:60
+        })
+    }
     render(){
+        const {collapsedLeftSide,leftCollapsedWidth} = this.state;
         return (
             <Layout style = {{minHeight:'100vh'}}>
-                <SiderMenu/>
+                <Header onCollapsedLeftSide={this.onCollapsedLeftSide}
+                        collasped={collapsedLeftSide}/>
                 <Layout>
-                    <Header/>
-                    <Content style={{margin:'16px 10px 0'}}>
+                    <SiderMenu collasped={collapsedLeftSide} leftCollapsedWidth={leftCollapsedWidth} onCollapse={this.onCollapsedLeftSide}/>
+                    <Content style={{margin:'16px 10px 0',width:"100%"}}>
                         <div style ={{background:'#fff',maxHeight:360,padding:24}}>
                             <Routes />
                             bill is cat
