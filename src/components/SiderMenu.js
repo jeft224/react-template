@@ -28,7 +28,7 @@ const renderSubMenu = (item) => (
     </Menu.SubMenu>
 )
 
-// @withRouter
+@withRouter
 class SiderMenu extends Component {
     // onSelect = ({path}) => { 
 
@@ -37,24 +37,21 @@ class SiderMenu extends Component {
     //     if (location.pathname === path) return
     //     history.push(path)
     // }
-    state ={
-        collapsed:false
-    }
-    onCollapse =() => {
-        this.setState({
-            collapsed:!this.state.collapsed
-        })
-    }
     render() {
-        const {collapsed,onCollapse,leftCollapsedWidth} = this.props;
+        const {collapsed,onCollapse,leftCollapsedWidth,showHeader} = this.props;
+        const classnames = cx('sidebar-left','sidebar-default',{
+            'sidebar-left-sm':collapsed,
+            'showheader':collapsed?false:showHeader,
+            'sidebar-left-close':leftCollapsedWidth == 0
+        })
         return (
-            <Sider collapsible width ={230}
+            <Sider collapsible width ={230} className={classnames}
                 collapsedWidth={leftCollapsedWidth+0.1}
                 breakpoint='lg'
                 trigger={null}
                 collapsed={collapsed}
-                onCollapse ={onCollapse}>
-                {/* <div className = "sider-menu-box">
+                onCollapse={onCollapse}>
+                <div className = "sider-menu-box">
                     <div className ="userinfo clearfix">
                         <Icon type ="woman"/>
                         <div className ="user-details">
@@ -81,8 +78,8 @@ class SiderMenu extends Component {
                             </div>
                         </div>
                     </div>
-                </div> */}
-                <Menu mode = "inline" theme ='dark'>
+                </div>
+                <Menu mode ="inline" theme ='dark'>
                     {
                         routes.menus && routes.menus.map(item =>
                             item.subs ? renderSubMenu(item) : renderMenuItem(item))

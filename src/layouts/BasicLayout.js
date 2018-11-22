@@ -7,11 +7,19 @@ import { Layout, Menu, Icon, Breadcrumb } from 'antd';
 const {Content,Footer} = Layout
 import SiderMenu from '../components/SiderMenu';
 import Header from '../components/header/Header';
+
 class BasicLayout extends Component {
     state = {
         leftCollapsedWidth:60,
-        collapsedLeftSide:false,
+        collapsedLeftSide:false, // 隐藏左侧侧边栏
+        showSideBarHeader:false, // 隐藏菜单中的信息模块
     }
+    
+    /**
+     * 用于隐藏左侧侧边栏
+     *
+     * @memberof BasicLayout
+     */
     onCollapsedLeftSide = () =>{
         const collapsedLeftSide = this.state.leftCollapsedWidth === 0 ? true :!this.state.collapsedLeftSide;
         console.log(this.state.collapsedLeftSide)
@@ -20,23 +28,37 @@ class BasicLayout extends Component {
             leftCollapsedWidth:60
         })
     }
+
+    /**
+     *
+     *用于隐藏自己的在线信息
+     * @memberof BasicLayout
+     */
+    toggleSideBarHeader = () => {
+        this.setState({
+            showSideBarHeader:!this.state.showSideBarHeader
+        })
+    }
     render(){
-        const {collapsedLeftSide,leftCollapsedWidth} = this.state;
+        const {collapsedLeftSide,leftCollapsedWidth,showSideBarHeader} = this.state;
         return (
             <Layout style = {{minHeight:'100vh'}}>
                 <Header onCollapsedLeftSide={this.onCollapsedLeftSide}
-                        collasped={collapsedLeftSide}/>
+                        collapsed={collapsedLeftSide} toggleSideBarHeader = {this.toggleSideBarHeader}/>
                 <Layout>
-                    <SiderMenu collasped={collapsedLeftSide} leftCollapsedWidth={leftCollapsedWidth} onCollapse={this.onCollapsedLeftSide}/>
-                    <Content style={{margin:'16px 10px 0',width:"100%"}}>
-                        <div style ={{background:'#fff',maxHeight:360,padding:24}}>
-                            <Routes />
-                            bill is cat
-                        </div>
-                    </Content>
-                    <Footer style={{textAlign:'center'}}>
-                        ant design @2018 created by ant ued
-                    </Footer>
+                    <SiderMenu collapsed={collapsedLeftSide} showHeader={showSideBarHeader} leftCollapsedWidth={leftCollapsedWidth} onCollapse={this.onCollapsedLeftSide}/>
+                    <Layout>
+                        <Content style={{margin:'16px 10px 0'}}>
+                            <div style ={{background:'#fff',maxHeight:360,padding:24}}>
+                                <Routes />
+                                bill is cat
+                            </div>
+                        </Content>
+                        <Footer style={{textAlign:'center'}}>
+                            used ant design ui created by ant abert @2018
+                        </Footer>
+                    </Layout>
+                    
                 </Layout>
                 
             </Layout>

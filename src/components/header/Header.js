@@ -4,13 +4,14 @@ import { Link } from 'react-router-dom';
 import {observer} from 'mobx-react'
 import './header.less'
 import logo from '../../assets/images/1.jpg'
+import cx from 'classnames';
 
 const {Header} = Layout
 @observer
 class RHeader extends Component{
     
     render() {
-        const {onCollapsedLeftSide} = this.props
+        const {onCollapsedLeftSide,collapsed} = this.props
         const menu = (
             <Menu>
                 <Menu.Item>
@@ -28,10 +29,13 @@ class RHeader extends Component{
                 </Menu.Item>
             </Menu>
         )
+        const classnames = cx('navbar-brand',{
+            'navbar-brand-show':collapsed
+        })
         return (
-            <Header className="header-icon">
+            <Header className="header-icon" >
                 <div className ="navbar-branding">
-                    <Link className="navbar-brand" to="/">
+                    <Link className="navbar-brand" to="/" className={classnames}>
                         <img src={logo} alt="logo"/>
                         <b>React</b>
                         Admin
