@@ -3,17 +3,24 @@ import { Layout,Icon,Dropdown,Avatar,Menu} from 'antd';
 import { Link } from 'react-router-dom';
 import {observer} from 'mobx-react'
 import './header.less'
-import logo from '../../assets/images/1.jpg'
+import logo from '../../assets/images/back_image.png'
 import cx from 'classnames';
+import {withRouter} from 'react-router-dom';
 
 const {Header} = Layout
 @observer
+@withRouter
 class RHeader extends Component{
-    
+    menuClick =(e) => {
+        e.key === 'logout'&& this.logout()
+    }
+    logout = () =>{
+        this.props.history.push('/login')
+    }
     render() {
         const {onCollapsedLeftSide,collapsed} = this.props
         const menu = (
-            <Menu>
+            <Menu onClick={this.menuClick}>
                 <Menu.Item>
                     <Icon type="logout"/>
                     个人中心
@@ -23,7 +30,7 @@ class RHeader extends Component{
                     个人设置
                 </Menu.Item>
                 <Menu.Divider/>
-                <Menu.Item>
+                <Menu.Item key="logout">
                     <Icon type="logout"/>
                     退出登录
                 </Menu.Item>
