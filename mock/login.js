@@ -16,7 +16,6 @@ class Login {
             return Mock.mock({
                 'username':'admin',
                 'name':'abert',// 昵称
-                
             })
         }
     }
