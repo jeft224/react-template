@@ -1,4 +1,5 @@
 "use strict";
+
 const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugins = require("html-webpack-plugin");
@@ -14,9 +15,12 @@ module.exports = {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        use: {
-          loader: "babel-loader"
-        }
+        use: [
+          {
+            loader: "babel-loader"
+          }
+          // "eslint-loader"
+        ]
       },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
@@ -45,10 +49,10 @@ module.exports = {
       cache: true, // 内容变化生成一个新的文件
       hash: true,
       minify: {
-        removeComments: true, //移除注释
-        collapseWhitespace: true, //压缩document中空白文本节点
-        collapseInlineTagWhitespace: true, //压缩行级元素的空白，会保留&nbsp;实体空格
-        removeAttributeQuotes: true //压缩 去掉引号
+        removeComments: true, // 移除注释
+        collapseWhitespace: true, // 压缩document中空白文本节点
+        collapseInlineTagWhitespace: true, // 压缩行级元素的空白，会保留&nbsp;实体空格
+        removeAttributeQuotes: true // 压缩 去掉引号
       }
     }),
     // 解决vender后面的hash每次都改变

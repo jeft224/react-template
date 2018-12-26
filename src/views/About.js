@@ -1,14 +1,11 @@
-import React, { Component } from 'react';
-import { observer } from 'mobx-react';
-import {withRouter} from 'react-router-dom';
+import React, { Component } from "react";
+import { observer } from "mobx-react";
+import { withRouter } from "react-router-dom";
+
 @observer
-class Home extends Component {
-    render() {
-        return (
-            <div>
-               关于
-            </div>
-        )
-    }
+class About extends Component {
+  render() {
+    return <div>关于</div>;
+  }
 }
-export default withRouter(Home);
+export default withRouter(About);
